@@ -1,8 +1,10 @@
-"use client
-import { Button } from '@/components/ui/button'
-import { Image } from '@radix-ui/react-avatar'
-import Link from 'next/link'
+"use client"
+
 import React from 'react'
+
+import { Button } from '@/components/ui/button'
+import  Image  from 'next/image'
+import Link from 'next/link'
 
 const Error = () => {
   return (
@@ -20,4 +22,3 @@ const Error = () => {
 }
 
 export default Error
-"

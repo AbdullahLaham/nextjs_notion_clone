@@ -10,6 +10,7 @@ import React from 'react'
 import Title from './Title'
 import Banner from './Banner'
 import Menu from './Menu'
+import Publish from './Publish'
 interface NavbarProps {
   isCollapsed: boolean,
   onResetWidth: () => void,
