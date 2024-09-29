@@ -18,12 +18,14 @@ import TrashBox from './TrashBox';
 import { useSearch } from '@/hooks/useSearch';
 import { useSettings } from '@/hooks/useSettings';
 import Navbar from './Navbar';
+import { useRouter } from 'next/navigation';
 const Navigation = () => {
     const isMobile = useMediaQuery("(max-width: 768px");
     const pathname = usePathname();
     const search = useSearch();
     const settings = useSettings();
     const {documentId} = useParams();
+    const router = useRouter();
 
     const create = useMutation(api.documents.create)
     const isResizingRef = useRef(false);
@@ -99,6 +101,7 @@ const Navigation = () => {
 
     const handleCreate = () => {
         const promise = create({ title: 'untitled', })
+            .then((id) => router.push(`/documents/${id}`))
         toast.promise(promise, {
             loading: "creating a new note",
             success: 'Note created successfully',

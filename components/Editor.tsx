@@ -24,10 +24,6 @@ export default function Editor({
 }: EditorProps) {
   const initialBlocks = initialContent ? JSON.parse(initialContent) : undefined;
   const [blocks, setBlocks] = useState<PartialBlock[]>(initialBlocks);
-  const editor = useCreateBlockNote({ initialContent: blocks });
-  const { resolvedTheme } = useTheme();
-  const {edgestore} = useEdgeStore();
-  
   const handleUpload = async (file: File) => {
     const response = await edgestore.publicFiles.upload({
       file
@@ -36,15 +32,27 @@ export default function Editor({
 
 
   }
+  const editor = useCreateBlockNote({ 
+    initialContent: blocks,
+    uploadFile: handleUpload
+   });
+   
+  const { resolvedTheme } = useTheme();
+  const {edgestore} = useEdgeStore();
+
+  
   return (
+
     <BlockNoteView
       editable={editable}
       editor={editor}
       theme={resolvedTheme === "dark" ? "dark" : "light"}
-      onChange={() => {
-        setBlocks(editor.document);
-        onChange(JSON.stringify(blocks));
-      }}
+      // onChange={() => {
+      //   setBlocks(editor.document);
+      //   onChange(JSON.stringify(blocks));
+      // }}
+      
+
 
     />
   );
