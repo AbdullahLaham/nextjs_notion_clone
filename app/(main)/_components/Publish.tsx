@@ -1,9 +1,8 @@
 import { Button } from '@/components/ui/button'
-import { Popover } from '@/components/ui/popover'
+import { Popover,  PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { api } from '@/convex/_generated/api'
 import { Doc } from '@/convex/_generated/dataModel'
 import useOrigin from '@/hooks/useOrigin'
-import { PopoverContent, PopoverTrigger } from '@radix-ui/react-popover'
 import { useMutation } from 'convex/react'
 import { Check, Copy, Globe } from 'lucide-react'
 import React, { useState } from 'react'
@@ -56,9 +55,9 @@ const Publish = ({ initialData }: PublishProps) => {
     return (
         <Popover>
             <PopoverTrigger asChild>
-                {!initialData.isPublished && <Button onClick={onPublish} >
+                <Button onClick={onPublish} >
                     Publish <Globe className='w-4 h-4 text-sky-500' />
-                </Button>}
+                </Button>
 
             </PopoverTrigger>
             <PopoverContent className='w-72 ' align='end' alignOffset={8} forceMount>
